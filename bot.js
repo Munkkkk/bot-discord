@@ -39,4 +39,4 @@ client.on('messageDelete', (message) => {
     }
   });
 
-client.login(TOKEN);
+  client.login(process.env.TOKEN);
