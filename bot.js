@@ -10,29 +10,29 @@ const client = new Client({
 const TOKEN = 'TON_TOKEN_ICI'; // Replace with token
 
 client.once('ready', () => {
-  console.log('Bot est prêt !');
+  console.log('Bot ready !');
 });
 
 client.on('messageDelete', (message) => {
-  console.log('Un message a été supprimé !');
+  console.log('Message deleted!');
 
   if (message.guild) {
     const logChannel = message.guild.channels.cache.find(ch => ch.name === 'log-channel');
     if (logChannel) {
       const now = new Date();
-      const date = now.toLocaleDateString('fr-FR');
-      const time = now.toLocaleTimeString('fr-FR');
+      const date = now.toLocaleDateString('en-EN');
+      const time = now.toLocaleTimeString('en-EN');
 
-      let logMessage = `🗑️ **Message supprimé** :
-      - **Auteur :** ${message.author.tag}
-      - **Salon :** #${message.channel.name}
+      let logMessage = `🗑️ **Message delete** :
+      - **Autor :** ${message.author.tag}
+      - **Channel :** #${message.channel.name}
       - **Date :** ${date}
-      - **Heure :** ${time}
-      - **Contenu :** "${message.content}"`;
+      - **Time :** ${time}
+      - **Content :** "${message.content}"`;
 
       if (message.attachments.size > 0) {
         message.attachments.forEach(attachment => {
-          logMessage += `\n**Fichier supprimé :** ${attachment.url}`;
+          logMessage += `\n**Files deleted :** ${attachment.url}`;
         });
       }
 
@@ -45,18 +45,18 @@ client.on('messageDelete', (message) => {
 client.on('messageUpdate', (oldMessage, newMessage) => {
   if (oldMessage.content !== newMessage.content) {
     const now = new Date();
-    const date = now.toLocaleDateString('fr-FR');
-    const time = now.toLocaleTimeString('fr-FR');
+    const date = now.toLocaleDateString('en-EN');
+    const time = now.toLocaleTimeString('en-EN');
   
     const logChannel = oldMessage.guild.channels.cache.find(ch => ch.name === 'log-channel');
     if (logChannel) {
-      logChannel.send(`✏️ **Message édité** :
-  - **Auteur :** ${oldMessage.author.tag}
-  - **Salon :** #${oldMessage.channel.name}
+      logChannel.send(`✏️ **Message edited** :
+  - **Autor :** ${oldMessage.author.tag}
+  - **Chan :** #${oldMessage.channel.name}
   - **Date :** ${date}
-  - **Heure :** ${time}
-  - **Avant :** "${oldMessage.content}"
-  - **Après :** "${newMessage.content}"`);
+  - **Time :** ${time}
+  - **Before :** "${oldMessage.content}"
+  - **After :** "${newMessage.content}"`);
     }
   }
 });
