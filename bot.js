@@ -7,7 +7,7 @@ const client = new Client({
   ] 
 });
 
-const TOKEN = 'TON_TOKEN_ICI'; // Remplace avec ton token
+const TOKEN = 'TON_TOKEN_ICI'; // Replace with token
 
 client.once('ready', () => {
   console.log('Bot est prêt !');
@@ -30,14 +30,13 @@ client.on('messageDelete', (message) => {
       - **Heure :** ${time}
       - **Contenu :** "${message.content}"`;
 
-      // Si le message contient des fichiers, loguer les liens
       if (message.attachments.size > 0) {
         message.attachments.forEach(attachment => {
           logMessage += `\n**Fichier supprimé :** ${attachment.url}`;
         });
       }
 
-      // Envoi du log dans le canal de logs
+
       logChannel.send(logMessage);
     }
   }
